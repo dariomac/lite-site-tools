@@ -32,5 +32,5 @@ git jargon unless you explain it.
 ## Publishing
 
 GitHub builds the site on every push to the main branch. There is no local
-build step. Use `/publish-site` to publish, and never push without the owner
+build step. Use `/site:publish` to publish, and never push without the owner
 asking to publish.

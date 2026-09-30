@@ -6,7 +6,7 @@
       "runtimeExecutable": "docker",
       "runtimeArgs": [
         "run", "--rm", "-p", "4000:4000",
-        "-v", "${workspaceFolder}/plugins/lite-site-tools/template:/src:ro",
+        "-v", "${workspaceFolder}/plugins/site/template:/src:ro",
         "-v", "${workspaceFolder}/dev:/build",
         "-v", "lite-site-gems:/usr/local/bundle",
         "-e", "BUNDLE_GEMFILE=/build/Gemfile",
