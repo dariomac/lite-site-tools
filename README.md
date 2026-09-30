@@ -46,8 +46,6 @@ Type `/site` to see them all.
 | `/site:connect-domain <domain>` | Connects your own domain and tells you exactly what to set at your registrar |
 | `/site:status` | Shows whether the latest publish worked and where your site is live |
 
-_Commands are being added one at a time. This table lists the planned set._
-
 ## Getting new commands
 
 Open `/plugin`, choose the `lite-site-tools` marketplace and turn on auto-update.
