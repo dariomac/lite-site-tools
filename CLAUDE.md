@@ -23,8 +23,11 @@ The end user is a non-developer on macOS or Windows. Command output must:
 - tell the user what happened and what to do next
 - ask before anything that publishes, deletes or touches their accounts
 
-Every command sets `disable-model-invocation: true`, so it runs only when the user
-types it.
+Commands that publish, install software or touch the user's accounts (`setup`,
+`publish`, `connect-domain`) set `disable-model-invocation: true`, so they run
+only when the user types them. Commands that only create or read local files
+(`new-post`, `status`) leave it off, so plain requests like "start a post about
+Docker" use the same conventions.
 
 ## Site conventions (the template and every command must agree)
 
