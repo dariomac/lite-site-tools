@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "template-preview",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": [
+        "run", "--rm", "-p", "4000:4000",
+        "-v", "${workspaceFolder}/plugins/lite-site-tools/template:/src:ro",
+        "-v", "${workspaceFolder}/dev:/build",
+        "-v", "lite-site-gems:/usr/local/bundle",
+        "-e", "BUNDLE_GEMFILE=/build/Gemfile",
+        "-e", "PAGES_REPO_NWO=example/example.github.io",
+        "ruby:3.3",
+        "sh", "-c", "bundle install --quiet && bundle exec jekyll serve -s /src -d /tmp/site --host 0.0.0.0 --force_polling"
+      ],
+      "port": 4000
+    }
+  ]
+}

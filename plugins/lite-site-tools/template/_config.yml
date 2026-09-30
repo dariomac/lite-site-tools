@@ -1,0 +1,45 @@
+# Site settings. /setup-site fills these in; you can edit them any time.
+title: Your Name
+description: Notes on what I know and what I'm learning.
+author: Your Name
+url: ""          # e.g. https://yourname.com, set by /setup-site or /connect-domain
+baseurl: ""
+
+# Links shown in the footer. Leave a value empty to hide it.
+social:
+  github: ""     # GitHub username
+  linkedin: ""   # the part after linkedin.com/in/
+  email: ""
+
+timezone: UTC
+lang: en
+
+# Blog posts live in _posts/YYYY-MM-DD-slug.md and are served at /blog/slug/
+permalink: /blog/:title/
+
+# Publish posts even when their date is "in the future" on GitHub's servers.
+# Without this, a post dated today can go missing because of time zones.
+future: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
