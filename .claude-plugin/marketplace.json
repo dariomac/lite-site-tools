@@ -1,0 +1,16 @@
+{
+  "name": "lite-site-tools",
+  "owner": {
+    "name": "dariomac"
+  },
+  "metadata": {
+    "description": "Simple commands to create, write and publish a personal website with a blog on GitHub Pages."
+  },
+  "plugins": [
+    {
+      "name": "lite-site-tools",
+      "source": "./plugins/lite-site-tools",
+      "description": "Set up a GitHub Pages site, write blog posts and publish them, without needing to know git."
+    }
+  ]
+}

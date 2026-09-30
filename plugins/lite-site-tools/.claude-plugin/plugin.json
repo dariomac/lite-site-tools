@@ -1,0 +1,8 @@
+{
+  "name": "lite-site-tools",
+  "version": "0.1.0",
+  "description": "Set up a GitHub Pages site, write blog posts and publish them, without needing to know git.",
+  "author": {
+    "name": "dariomac"
+  }
+}
