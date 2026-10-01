@@ -58,6 +58,37 @@ Type `/site` to see them all.
 | `/site:theme <name>` | Changes how your site looks. Run it without a name to see the choices |
 | `/site:upgrade` | Updates a site made with an older version of the plugin, so it gets new features |
 
+## Writing posts
+
+Posts are plain text files written in **Markdown**, a simple way to add
+formatting with a few symbols. The ones you'll use most:
+
+| To get | Write |
+|---|---|
+| **bold** | `**bold**` |
+| *italic* | `*italic*` |
+| A heading | `## Heading` on its own line |
+| A link | `[link text](https://example.com)` |
+| A list | `- item` on each line (or `1.` for a numbered list) |
+| `code` | `` `code` `` |
+| A code block | three backticks ```` ``` ```` on the lines before and after the code |
+| A quote | `> quoted text` |
+
+For images, the easiest way is to ask Claude: "add this picture to my post",
+with the image file attached or its location on your computer. It puts the file
+in the right place and writes the Markdown for you.
+
+If you have a doubt about how to write something:
+
+- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/): a one-page
+  summary of everything Markdown can do. Start here.
+- [GitHub's writing and formatting guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax):
+  more detail, with examples. A few things on that page (@mentions, emoji
+  shortcodes like `:smile:`, and colored alert boxes) only work on GitHub, not
+  on your site.
+
+You can also just ask Claude, for example "how do I make a table in my post?".
+
 ## Themes
 
 Your site starts with the **clean** look. See all the themes in
