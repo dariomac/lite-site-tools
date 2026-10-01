@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<div class="home">
+  {% if site.avatar and site.avatar != "" %}
+  <img class="avatar" src="{{ site.avatar | relative_url }}" alt="{{ site.author }}">
+  {% endif %}
+  {{ content }}
+</div>

@@ -12,6 +12,8 @@ plugin (`site`).
     invoked with the plugin prefix: `skills/new-post/` is `/site:new-post`.
   - `template/`: the starter Jekyll site that `/site:setup` copies into the user's
     folder. Skills refer to it as `${CLAUDE_PLUGIN_ROOT}/template`.
+  - `themes/<name>/`: one folder per look. `/site:setup` copies
+    `themes/clean/theme.css` into the new site; `/site:theme` swaps it.
 
 Installed plugins live in `~/.claude/plugins/cache/`, whatever the install scope,
 so skills must never assume the plugin is inside the user's project.
@@ -43,11 +45,36 @@ Docker" use the same conventions.
   `/site:connect-domain` resets `baseurl` to `""`, since a custom domain serves
   the site at its root
 
+## Theme contract
+
+Themes are **CSS only**: a theme is `themes/<name>/theme.css`, copied to the
+site's `assets/css/theme.css`. The layouts are shared, so every command works the
+same with every theme. A theme must:
+
+- Start with a comment naming the theme, describing it in one line, and saying
+  the file is replaced on a theme switch.
+- Define these variables on `:root`, with a dark-mode set under
+  `@media (prefers-color-scheme: dark)`: `--bg`, `--text`, `--muted`, `--accent`,
+  `--border`, `--code-bg`, `--max`, `--font-body`, `--font-heading`, `--font-mono`.
+  Users override them in `custom.css`, so the rest of the theme must use them
+  instead of hard-coded values.
+- Look right with every class the layouts use: `.site-header`, `.site-title`,
+  `.site-footer`, `.home`, `.avatar`, `.post`, `.post-date`, `.post-list`, `.back`.
+  `.avatar` always needs a size, since the image can be any size.
+- Load web fonts, if any, with an `@import` from Google Fonts at the top of the file.
+- Work at phone width with no sideways scrolling.
+
+The user's own changes live in `assets/css/custom.css`, which loads after the
+theme and is never touched by any command. `theme_name` in `_config.yml` records
+the current theme.
+
 ## Previewing the template
 
-`.claude/launch.json` defines `template-preview`, which builds `plugins/site/template`
-in Docker with the `github-pages` gem (the same build GitHub runs) at
-http://localhost:4000.
+`dev/preview.sh [theme] [build|serve]` assembles the template, a theme and the
+demo content in `dev/demo/` (sample posts, avatar, demo name), then builds or
+serves it in Docker with the `github-pages` gem, the same build GitHub runs.
+`serve` runs at http://localhost:4000. `.claude/launch.json` runs it for the
+`clean` theme.
 
 ## Local testing of the plugin
 

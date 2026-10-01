@@ -1,4 +1,15 @@
+/*
+ * Theme: clean
+ * System fonts, white background, blue links, lots of space.
+ *
+ * This file belongs to the theme and is replaced when you switch themes.
+ * Put your own changes in custom.css instead.
+ */
+
 :root {
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --bg: #ffffff;
   --text: #1f2328;
   --muted: #656d76;
@@ -25,7 +36,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.7;
 }
@@ -50,6 +61,7 @@ a { color: var(--accent); }
 }
 
 .site-title {
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.125rem;
   color: var(--text);
@@ -67,13 +79,13 @@ a { color: var(--accent); }
 
 main { padding-top: 1.5rem; padding-bottom: 3rem; }
 
-h1, h2, h3 { line-height: 1.25; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: 1.25; }
 h1 { font-size: 2rem; margin-top: 1rem; }
 
 img { max-width: 100%; height: auto; }
 
 pre, code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
   background: var(--code-bg);
   border-radius: 6px;
@@ -88,6 +100,15 @@ blockquote {
   padding-left: 1rem;
   border-left: 3px solid var(--border);
   color: var(--muted);
+}
+
+.avatar {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 1rem 0 0;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .post-list { list-style: none; padding: 0; }

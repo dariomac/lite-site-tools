@@ -10,6 +10,7 @@ allowed-tools:
   - Bash(gh api user:*)
   - Bash(ls -A:*)
   - Bash(cp -R ${CLAUDE_PLUGIN_ROOT}/template/. .)
+  - Bash(cp ${CLAUDE_PLUGIN_ROOT}/themes/clean/theme.css assets/css/theme.css)
 ---
 
 # Set up the website
@@ -161,10 +162,12 @@ Ask, in one message:
 
 ## 5. Create the site files
 
-Copy the starter site into the current folder:
+Copy the starter site and its default look (the `clean` theme) into the current
+folder:
 
 ```
 cp -R ${CLAUDE_PLUGIN_ROOT}/template/. .
+cp ${CLAUDE_PLUGIN_ROOT}/themes/clean/theme.css assets/css/theme.css
 ```
 
 Then:

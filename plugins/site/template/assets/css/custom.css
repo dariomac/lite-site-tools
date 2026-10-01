@@ -1,0 +1,14 @@
+/*
+ * Your own style changes go here.
+ *
+ * This file loads after the theme and is never touched when you switch themes,
+ * so anything here keeps working with every theme.
+ *
+ * Examples (remove the slash-star around one to try it):
+ *
+ *   Change the link color:
+ *   :root { --accent: #c2410c; }
+ *
+ *   Make the text a bit bigger:
+ *   body { font-size: 1.125rem; }
+ */

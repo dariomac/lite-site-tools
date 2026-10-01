@@ -10,7 +10,22 @@ git jargon unless you explain it.
 - `index.md`: home page
 - `about.md`: about page
 - `_posts/`: blog posts, one Markdown file each
-- `_layouts/` and `assets/css/style.css`: how the site looks
+- `_layouts/`: page structure
+- `assets/css/theme.css`: the current theme (`theme_name` in `_config.yml`)
+- `assets/css/custom.css`: the owner's own style changes
+
+## Changing how the site looks
+
+- To switch to a different look, use `/site:theme`.
+- Put every style change the owner asks for ("make the links green", "bigger
+  text") in `assets/css/custom.css`. **Never edit `theme.css`**: it's replaced
+  when the theme changes, and the owner's changes would be lost.
+- Prefer overriding the theme's variables in `custom.css`, e.g.
+  `:root { --accent: #c2410c; }`. Every theme defines `--bg`, `--text`,
+  `--muted`, `--accent`, `--border`, `--code-bg`, `--max`, `--font-body`,
+  `--font-heading` and `--font-mono`.
+- For a photo on the home page, put the image in `assets/images/` and set
+  `avatar:` in `_config.yml` to its path, e.g. `/assets/images/me.jpg`.
 
 ## Blog posts
 
