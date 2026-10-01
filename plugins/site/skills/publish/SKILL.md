@@ -51,6 +51,8 @@ Otherwise, describe the changes in everyday words, grouped like this:
 - New posts: by title (read it from the front matter)
 - Edited posts or pages: by title or page name
 - New images or other files
+- A new look: if `assets/css/theme.css` changed, say "Switched the look to
+  <theme_name from _config.yml>" instead of listing the file
 - **Deleted files: list each one explicitly** and make sure they meant it
 
 ## 3. Check before publishing

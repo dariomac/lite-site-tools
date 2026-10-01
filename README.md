@@ -49,6 +49,13 @@ Type `/site` to see them all.
 | `/site:publish` | Publishes your changes to the live site |
 | `/site:connect-domain <domain>` | Connects your own domain and tells you exactly what to set at your registrar |
 | `/site:status` | Shows whether the latest publish worked and where your site is live |
+| `/site:theme <name>` | Changes how your site looks. Run it without a name to see the choices |
+
+## Themes
+
+Your site starts with the **clean** look. See all the themes in
+[THEMES.md](THEMES.md) and switch with `/site:theme <name>`. Switching never
+touches your posts, your pages or your own style changes.
 
 ## Getting new commands
 
