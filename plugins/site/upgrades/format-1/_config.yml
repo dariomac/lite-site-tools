@@ -1,19 +1,9 @@
-# Site settings. /site:setup fills these in; you can edit them any time.
-
-# Which version of the site structure this is. /site:upgrade uses it; don't change it.
-site_format: 2
-
+# Site settings. /setup-site fills these in; you can edit them any time.
 title: Your Name
 description: Notes on what I know and what I'm learning.
 author: Your Name
-url: ""          # e.g. https://yourname.com, set by /site:setup or /site:connect-domain
+url: ""          # e.g. https://yourname.com, set by /setup-site or /connect-domain
 baseurl: ""
-
-# How the site looks. Change it with /site:theme.
-theme_name: clean
-
-# Optional photo for the home page, e.g. /assets/images/me.jpg
-avatar: ""
 
 # Links shown in the footer. Leave a value empty to hide it.
 social:

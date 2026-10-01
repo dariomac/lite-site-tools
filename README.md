@@ -29,7 +29,13 @@ On Windows it may ask you to restart Claude Code once, after installing Git.
    ```
    /plugin install site@lite-site-tools
    ```
-   When asked where to install it, choose this project.
+
+   <img src="docs/images/install-scope.png" alt="The plugin's install screen, with the project scope option selected" width="640">
+
+   When asked where to install it, choose **"Install for all collaborators on
+   this repository (project scope)"**. You're the only collaborator; this option
+   saves the setting inside your website folder, so it also works if you ever
+   set up your site on another computer.
 5. Run:
    ```
    /site:setup
@@ -50,6 +56,7 @@ Type `/site` to see them all.
 | `/site:connect-domain <domain>` | Connects your own domain and tells you exactly what to set at your registrar |
 | `/site:status` | Shows whether the latest publish worked and where your site is live |
 | `/site:theme <name>` | Changes how your site looks. Run it without a name to see the choices |
+| `/site:upgrade` | Updates a site made with an older version of the plugin, so it gets new features |
 
 ## Themes
 
@@ -62,6 +69,10 @@ touches your posts, your pages or your own style changes.
 Open `/plugin`, choose the `lite-site-tools` marketplace and turn on auto-update.
 You can also run `/plugin marketplace update lite-site-tools` whenever you're told
 there's a new version.
+
+Some new versions add features your existing site needs a small update for.
+`/site:status` tells you when that's the case, and `/site:upgrade` does it
+without changing your posts or how your site looks.
 
 ## Working on another computer
 

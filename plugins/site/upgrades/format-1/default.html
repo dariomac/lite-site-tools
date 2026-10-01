@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% seo %}
+  {% feed_meta %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      {% if site.social.github != "" %}<a href="https://github.com/{{ site.social.github }}">GitHub</a>{% endif %}
+      {% if site.social.linkedin != "" %}<a href="https://www.linkedin.com/in/{{ site.social.linkedin }}">LinkedIn</a>{% endif %}
+      {% if site.social.email != "" %}<a href="mailto:{{ site.social.email }}">Email</a>{% endif %}
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </p>
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</p>
+  </footer>
+</body>
+</html>

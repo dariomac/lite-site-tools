@@ -31,8 +31,9 @@ The current folder must contain `_config.yml` and `assets/css/theme.css`.
 - No `_config.yml`: tell them to open their website folder in Claude Code, or run
   `/site:setup` if they haven't created their site yet. Stop.
 - `_config.yml` but no `assets/css/theme.css`: the site was created before themes
-  existed and needs a one-time update that this command doesn't do yet. Say so
-  plainly, and suggest they ask whoever gave them the plugin. Stop.
+  existed. Explain that a one-time update is needed first, and that
+  `/site:upgrade` does it without changing how the site looks or anything they
+  wrote. Stop.
 
 ## 2. Find the themes
 

@@ -54,5 +54,8 @@ Answer with up to five short lines, only the ones that apply, in this order:
   `/site:publish` brings them down automatically next time.
 - **Domain:** connected / DNS still pending / HTTPS still pending, and suggest
   `/site:connect-domain` if something's pending.
+- **Update available:** if `site_format` in `_config.yml` is missing or lower
+  than 2, the site was made with an older version of the plugin. Suggest
+  `/site:upgrade` to get the newer features (like themes).
 
 End with the single most useful next step, if there is one.

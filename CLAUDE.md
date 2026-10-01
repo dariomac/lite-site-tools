@@ -25,8 +25,9 @@ The end user is a non-developer on macOS or Windows. Command output must:
 - tell the user what happened and what to do next
 - ask before anything that publishes, deletes or touches their accounts
 
-Commands that publish, install software or touch the user's accounts (`setup`,
-`publish`, `connect-domain`) set `disable-model-invocation: true`, so they run
+Commands that publish, install software, touch the user's accounts or
+restructure the site (`setup`, `publish`, `connect-domain`, `upgrade`) set
+`disable-model-invocation: true`, so they run
 only when the user types them. Commands that only create or read local files
 (`new-post`, `status`, `theme`) leave it off, so plain requests like "start a post about
 Docker" use the same conventions.
@@ -73,6 +74,20 @@ same with every theme. A theme must:
 The user's own changes live in `assets/css/custom.css`, which loads after the
 theme and is never touched by any command. `theme_name` in `_config.yml` records
 the current theme.
+
+## Site format and upgrades
+
+`site_format` in the template's `_config.yml` is the version of the site
+structure (format 1 had no such key). Bump it whenever a template change means
+existing sites need files added, moved or rewritten, not for content-only or
+style-only changes. Each bump needs:
+
+1. A copy of the files the upgrade compares against, as they were in the old
+   format, in `plugins/site/upgrades/format-<old>/` (recover them from git).
+2. A new "Format <old> → <new>" section in `skills/upgrade/SKILL.md`, and the
+   current format number updated there and in `skills/status/SKILL.md`.
+3. Any command that depends on the new structure checks for it and points to
+   `/site:upgrade` instead of failing.
 
 ## Previewing the template
 
