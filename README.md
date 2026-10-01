@@ -25,7 +25,7 @@ On Windows it may ask you to restart Claude Code once, after installing Git.
    ```
    /plugin marketplace add dariomac/lite-site-tools
    ```
-4. Install the plugin for this folder only:
+4. Install the plugin **for this folder only**:
    ```
    /plugin install site@lite-site-tools
    ```
