@@ -33,6 +33,23 @@ Hard rules:
 The site is created **in the current folder**. The starter site lives at
 `${CLAUDE_PLUGIN_ROOT}/template`.
 
+## Before anything else: Windows needs Git for Windows
+
+Every step below runs in the Bash shell. On Windows, Claude Code only has Bash
+when **Git for Windows** is installed; without it, commands run in PowerShell.
+
+If you only have a PowerShell tool and no Bash tool (or `$env:OS` is
+`Windows_NT` and `git --version` fails), Git for Windows is missing. Explain that
+it's the free tool that lets you save and publish their site, and ask before
+installing it:
+
+```
+winget install --id Git.Git -e --source winget
+```
+
+Then ask them to **quit and reopen Claude Code** in this folder (so it picks up
+the new shell) and run `/site:setup` again. Stop here until they do.
+
 ## 1. Check the folder
 
 Run `ls -A` in the current folder.
@@ -41,7 +58,8 @@ Run `ls -A` in the current folder.
 - **Already has `_config.yml` and `_layouts/post.html`:** a previous setup got
   partway. Tell them you'll pick up where it stopped. Skip copying in step 5, and
   skip each later step that's already done (check with `git status`, `git remote -v`,
-  `gh repo view`).
+  `gh repo view`). Recover the repository name from `git remote get-url origin`
+  if it's set, or from `baseurl` in `_config.yml` (empty means `<login>.github.io`).
 - **Anything else:** stop. Explain that the website needs its own empty folder so
   nothing of theirs gets mixed in or overwritten. Tell them to create a new empty
   folder, open it in Claude Code, and run `/site:setup` there.
@@ -52,7 +70,7 @@ Find the operating system with `uname -s`: `Darwin` is macOS; `MINGW…`, `MSYS�
 or `CYGWIN…` is Windows.
 
 **git** (`git --version`):
-- Windows: always present (Claude Code needs it).
+- Windows: present once you've reached this step (see "Before anything else").
 - macOS, if missing: running `git --version` makes macOS offer to install the
   "Command Line Developer Tools". Tell them to click **Install**, wait for it to
   finish (a few minutes), then run `/site:setup` again.
@@ -77,8 +95,21 @@ If not, you can't do this part for them because it needs their browser. Tell the
 >
 > `gh auth login --hostname github.com --git-protocol https --web`
 >
-> It shows a one-time code. Press Enter, a browser opens, sign in to GitHub,
-> paste the code and click **Authorize**. Then come back here and tell me "done".
+> It asks a few things, one at a time:
+>
+> 1. **"Authenticate Git with your GitHub credentials? (Y/n)"**: press **Enter**
+>    (that means yes). It lets me publish your site using this sign-in.
+> 2. **"First copy your one-time code: XXXX-XXXX"**: note or copy that code.
+> 3. **"Press Enter to open https://github.com/login/device in your browser"**:
+>    press **Enter**.
+> 4. In the browser: sign in to GitHub if asked, type or paste the code, click
+>    **Continue**, then **Authorize GitHub CLI**.
+> 5. Back in the terminal you'll see **"✓ Logged in as …"**.
+>
+> Then come back here and tell me "done".
+>
+> If it asks anything else, or the browser doesn't open, copy what the terminal
+> says and paste it here.
 
 When they say done, check `gh auth status` again.
 
@@ -88,14 +119,41 @@ a password or SSH key.
 ## 4. Get their details
 
 Run `gh api user --jq '.login, .id, .name'` to get their GitHub username, numeric
-id and display name. The site repository will be `<login>.github.io`, written in
-lowercase, and the address `https://<login>.github.io`.
+id and display name. Use `<login>` in lowercase from here on.
 
-Check it doesn't exist yet: `gh repo view <login>/<login>.github.io`.
-If it **does** exist (and this isn't a resumed setup that created it), stop. Explain
-that their account already has a GitHub Pages site, and that you won't touch it.
+### Choose where the site lives
 
-Then ask, in one message:
+Everything after this step uses three values: `<repo>`, `<site-url>` and `<baseurl>`.
+
+**Main site (the normal case).** Check `gh repo view <login>/<login>.github.io`.
+If that repository doesn't exist (or this is a resumed setup that created it):
+
+- `<repo>` = `<login>.github.io`
+- `<site-url>` = `https://<login>.github.io`
+- `<baseurl>` = empty
+
+**Second site (when they already have a main site).** If `<login>.github.io`
+already exists and isn't from this setup, don't touch it. Explain in plain words:
+
+> Your GitHub account already has a main website at `<login>.github.io`. I won't
+> change it. I can create this site as a second one on the same account, at an
+> address like `https://<login>.github.io/my-website/`. What name would you like
+> at the end of the address? (Suggestion: `my-website`)
+
+Clean up the name they give: lowercase, spaces become hyphens, only letters,
+digits and hyphens. Check `gh repo view <login>/<name>` doesn't exist; if it does,
+ask for another name. Then:
+
+- `<repo>` = `<name>`
+- `<baseurl>` = `/<name>`
+- `<site-url>`: check whether the main site uses a custom domain with
+  `gh api repos/<login>/<login>.github.io/pages --jq .cname`. If it returns a
+  domain, `<site-url>` is `https://<that domain>`; otherwise
+  `https://<login>.github.io`. The full address is `<site-url><baseurl>/`.
+
+### Ask about them
+
+Ask, in one message:
 1. Their name as it should appear on the site (suggest their GitHub name if set).
 2. One sentence describing the site (suggest: "Notes on what I know and what I'm learning.").
 3. Optional: their LinkedIn profile (the part after `linkedin.com/in/`).
@@ -111,9 +169,9 @@ cp -R ${CLAUDE_PLUGIN_ROOT}/template/. .
 
 Then:
 - In `_config.yml`, set `title` and `author` to their name, `description`,
-  `url` to `https://<login>.github.io`, `social.github` to `<login>`, and
-  `social.linkedin` / `social.email` if given. Keep the comments. Quote values that
-  contain `:` or `#`.
+  `url` to `<site-url>`, `baseurl` to `<baseurl>` (in quotes, `""` when empty),
+  `social.github` to `<login>`, and `social.linkedin` / `social.email` if given.
+  Keep the comments. Quote values that contain `:` or `#`.
 - Re-date the sample post in `_posts/`: replace the date at the start of its file
   name with today (`YYYY-MM-DD`), keeping the rest of the name, and set its
   `date:` to today.
@@ -137,15 +195,15 @@ real email never appears in the site's public history.
 
 Show a short summary and wait for a clear yes:
 
-> Ready to publish. I'll create a **public** repository called `<login>.github.io`
-> on your GitHub account and put your site live at https://<login>.github.io.
+> Ready to publish. I'll create a **public** repository called `<repo>` on your
+> GitHub account and put your site live at `<site-url><baseurl>/`.
 > Everything in this folder will be public. Go ahead?
 
 On yes:
 
 ```
-gh repo create <login>.github.io --public --source . --remote origin --push --description "My personal website"
-gh api -X POST repos/<login>/<login>.github.io/pages -f "source[branch]=main" -f "source[path]=/"
+gh repo create <repo> --public --source . --remote origin --push --description "My personal website"
+gh api -X POST repos/<login>/<repo>/pages -f "source[branch]=main" -f "source[path]=/"
 ```
 
 If the second command says Pages is already enabled (HTTP 409), that's fine.
@@ -156,11 +214,11 @@ Tell them GitHub is building the site, which usually takes one to three minutes.
 Check every 15 seconds, for up to 5 minutes:
 
 ```
-gh api repos/<login>/<login>.github.io/pages/builds/latest --jq .status
+gh api repos/<login>/<repo>/pages/builds/latest --jq .status
 ```
 
 - `built`: the site is live.
-- `errored`: run `gh api repos/<login>/<login>.github.io/pages/builds/latest --jq .error.message`
+- `errored`: run `gh api repos/<login>/<repo>/pages/builds/latest --jq .error.message`
   and explain it in plain words.
 - Still building after 5 minutes: tell them this is normal for a brand-new site,
   and to open the address in a few minutes.
@@ -168,7 +226,7 @@ gh api repos/<login>/<login>.github.io/pages/builds/latest --jq .status
 ## 9. Finish
 
 Tell them:
-- Their site is live at https://<login>.github.io (it can take a minute or two
+- Their site is live at `<site-url><baseurl>/` (it can take a minute or two
   more to show up in the browser).
 - They only need `/site:setup` once.
 - What to do next:

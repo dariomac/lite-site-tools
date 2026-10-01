@@ -118,7 +118,7 @@ matches the one you pushed, then:
 
 ## 7. Finish
 
-Tell them it's live, with links to the site (`url` in `_config.yml`) and to each
-new post (`<url>/blog/<slug>/`, where the slug is the post's file name without
+Tell them it's live, with links to the site (`<url><baseurl>/`, from `url` and
+`baseurl` in `_config.yml`) and to each new post (`<url><baseurl>/blog/<slug>/`, where the slug is the post's file name without
 the date and `.md`). Mention the browser may show the old version for a minute;
 refreshing fixes it.

@@ -35,7 +35,13 @@ Docker" use the same conventions.
 - The site lives in the folder the user opens in Claude Code; the plugin is
   installed there with project scope
 - Posts live in `_posts/YYYY-MM-DD-slug.md` and are served at `/blog/slug/`
-- Repo name: `<github-username>.github.io`, public
+- Repo name: `<github-username>.github.io`, public. If that already exists,
+  `/site:setup` creates a second site in a repo like `my-website`, served at
+  `<username>.github.io/my-website/` with `baseurl: "/my-website"`
+- Every link in the template goes through `relative_url`, and every command that
+  shows an address uses `url` + `baseurl`, so both kinds of site work.
+  `/site:connect-domain` resets `baseurl` to `""`, since a custom domain serves
+  the site at its root
 
 ## Previewing the template
 

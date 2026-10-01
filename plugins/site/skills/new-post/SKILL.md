@@ -66,7 +66,8 @@ Start writing here.
 - Where the file is (give the path as a link they can click) and that it's a plain
   Markdown file: `**bold**`, `*italic*`, `[link text](https://…)`, `- ` for lists,
   and `## ` for a heading.
-- Once it's live, it will be at `<url from _config.yml>/blog/<slug>/`.
+- Once it's live, it will be at `<url><baseurl>/blog/<slug>/`, using `url` and
+  `baseurl` from `_config.yml` (`baseurl` is usually empty).
 - Nothing is public yet. When they're happy with it, `/site:publish` puts it live.
 - Offer to help them outline the post or review a draft. Don't write the post for
   them unless they ask: the site is meant to show what *they* know and are learning.

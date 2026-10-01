@@ -118,8 +118,10 @@ GitHub adds a file called `CNAME` to their repository when you do this. Bring it
 down with `git pull --rebase origin main`. If `CNAME` still doesn't exist in the
 folder afterwards, create it containing just `<domain>`.
 
-Set `url` in `_config.yml` to `https://<domain>`, then publish this change the same
-way `/site:publish` does, but only these two files:
+Set `url` in `_config.yml` to `https://<domain>`. If `baseurl` isn't empty (a
+second site at an address like `<login>.github.io/my-website/`), set it to `""`:
+with its own domain, the site lives at the root of that domain. Then publish this
+change the same way `/site:publish` does, but only these two files:
 
 ```
 git add CNAME _config.yml

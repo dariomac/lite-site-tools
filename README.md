@@ -6,11 +6,15 @@ using your own domain. You don't need to know git: each step is a slash command.
 ## What you need
 
 - A GitHub account
-- A paid Claude plan (Pro or Max) and Claude Code. The Code tab in the Claude
-  desktop app is the easiest way to use it.
+- A Claude plan that includes Claude Code: Pro or Max. The free plan doesn't
+  include it. A Team or Enterprise seat from work, or an Anthropic Console
+  (pay-as-you-go API) account, also works.
+- Claude Code itself. The Code tab in the Claude desktop app is the easiest way
+  to use it.
 - A domain name, if you want your own address. You can add it later.
 
 `/site:setup` installs and signs in to everything else (git and the GitHub CLI) for you.
+On Windows it may ask you to restart Claude Code once, after installing Git.
 
 ## Get started
 
