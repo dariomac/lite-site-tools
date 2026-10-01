@@ -1,0 +1,158 @@
+/*
+ * Theme: warm
+ * Rounded type, soft sand colors and a coral accent, with a big friendly photo.
+ *
+ * This file belongs to the theme and is replaced when you switch themes.
+ * Put your own changes in custom.css instead.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,800;1,400&display=swap");
+
+:root {
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --bg: #fdf6ee;
+  --text: #3d3229;
+  --muted: #86725f;
+  --accent: #d9572b;
+  --border: #f0e2d3;
+  --code-bg: #f6eadc;
+  --max: 42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #221c18;
+    --text: #f3e9df;
+    --muted: #b5a393;
+    --accent: #ff8a65;
+    --border: #3a302a;
+    --code-bg: #2c2420;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+header, main, footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a { color: var(--accent); text-underline-offset: 0.2em; }
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  padding-bottom: 1rem;
+}
+
+.site-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header nav { display: flex; gap: 0.5rem; }
+
+.site-header nav a {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: var(--code-bg);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.site-header nav a:hover { background: var(--accent); color: var(--bg); }
+
+main { padding-top: 1rem; padding-bottom: 3rem; }
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2.2rem; margin-top: 1rem; }
+
+img { max-width: 100%; height: auto; border-radius: 14px; }
+
+pre, code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--code-bg);
+  border-radius: 10px;
+}
+
+code { padding: 0.15em 0.4em; }
+pre { padding: 1rem 1.2rem; overflow-x: auto; }
+pre code { padding: 0; background: none; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  background: var(--code-bg);
+  border-radius: 14px;
+  color: var(--muted);
+}
+
+blockquote p { margin: 0; }
+
+.home .avatar {
+  display: block;
+  width: 136px;
+  height: 136px;
+  margin: 1.5rem auto 0;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 6px var(--bg), 0 0 0 9px var(--accent);
+}
+
+.avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+
+.home > h1:first-of-type,
+.home > h1:first-of-type + p { text-align: center; }
+
+.home > h1:first-of-type + p { color: var(--muted); font-size: 1.1rem; }
+
+.post-list { list-style: none; padding: 0; }
+.post-list li {
+  margin-bottom: 0.75rem;
+  padding: 0.9rem 1.15rem;
+  background: var(--code-bg);
+  border-radius: 14px;
+}
+.post-list a { font-weight: 800; text-decoration: none; }
+.post-list a:hover { text-decoration: underline; }
+.post-list p { margin: 0.25rem 0 0; color: var(--muted); }
+
+.post-date { color: var(--muted); font-size: 0.9rem; margin-left: 0.5rem; }
+.post .post-date { margin: -0.5rem 0 2rem; display: block; }
+.back { margin-top: 3rem; }
+
+.site-footer {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  border-top: 2px dotted var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer a { margin-right: 1rem; color: var(--muted); }

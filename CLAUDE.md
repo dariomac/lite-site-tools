@@ -56,6 +56,7 @@ same with every theme. A theme must:
 - Define these variables on `:root`, with a dark-mode set under
   `@media (prefers-color-scheme: dark)`: `--bg`, `--text`, `--muted`, `--accent`,
   `--border`, `--code-bg`, `--max`, `--font-body`, `--font-heading`, `--font-mono`.
+  A theme that's always dark (like `terminal`) repeats the same values in both.
   Users override them in `custom.css`, so the rest of the theme must use them
   instead of hard-coded values.
 - Look right with every class the layouts use: `.site-header`, `.site-title`,
@@ -63,6 +64,11 @@ same with every theme. A theme must:
   `.avatar` always needs a size, since the image can be any size.
 - Load web fonts, if any, with an `@import` from Google Fonts at the top of the file.
 - Work at phone width with no sideways scrolling.
+- Ship a `README.md` and two screenshots next to `theme.css`, and get a section
+  in the root `THEMES.md`: `screenshot-desktop.jpg` (home page, desktop width,
+  light mode) and `screenshot-mobile.jpg` (the "first week learning Git" demo
+  post, 375px phone, dark mode). Take them from `dev/preview.sh <theme> serve`
+  in the browser pane, and save them as JPEG to keep the plugin small.
 
 The user's own changes live in `assets/css/custom.css`, which loads after the
 theme and is never touched by any command. `theme_name` in `_config.yml` records
